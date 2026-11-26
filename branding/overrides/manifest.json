@@ -1,0 +1,102 @@
+[
+ {
+  "target": "backend/resources/views/emails/orders/summary.blade.php",
+  "file": "summary.blade.php",
+  "originalSha256": "dcab578f5ca205879c0ba8c4d4886e962d521199a6e44de87bde529e05de9c56"
+ },
+ {
+  "target": "backend/resources/views/emails/orders/attendee-ticket.blade.php",
+  "file": "attendee-ticket.blade.php",
+  "originalSha256": "ccaa1bf2237c9d98ff6745ade4587d706f3bfca7277c2c0e9d692ee282b05db0"
+ },
+ {
+  "target": "backend/resources/views/emails/orders/organizer/summary-for-organizer.blade.php",
+  "file": "summary-for-organizer.blade.php",
+  "originalSha256": "b0960d654918128f94dc9d23272f6b14c3ad065316908e2aa059f851a972a4da"
+ },
+ {
+  "target": "backend/resources/views/vendor/mail/html/message.blade.php",
+  "file": "message.blade.php",
+  "originalSha256": "3ef2116695e03bf3ff041fd056ad2765a4bf4f763f70a8ba1334e9f7b0ed15de"
+ },
+ {
+  "target": "backend/resources/views/emails/orders/order-refunded.blade.php",
+  "file": "order-refunded.blade.php",
+  "originalSha256": "c9149fbab9092fa4e2325028c7dc5e3219a1b331cc954d485b2a30b407ef4721"
+ },
+ {
+  "target": "backend/app/Helper/Currency.php",
+  "file": "Currency.php",
+  "originalSha256": "35eb9a6d7d48eee4f80ed0e6f33e68cb914691945c0fa8d3bf71d891c61f6100"
+ },
+ {
+  "target": "backend/resources/views/emails/occurrence/cancellation.blade.php",
+  "file": "cancellation.blade.php",
+  "originalSha256": "561333f2583dc78652ba38e9d0d9770bb77e704734e75c925accfff98b6bb541"
+ },
+ {
+  "target": "backend/resources/views/emails/waitlist/offer.blade.php",
+  "file": "waitlist-offer.blade.php",
+  "originalSha256": "0183f37b707debbf154928a7ee5065b36ca7794e7e70f07fbe0945f67c165fb6"
+ },
+ {
+  "target": "backend/resources/views/emails/waitlist/confirmation.blade.php",
+  "file": "waitlist-confirmation.blade.php",
+  "originalSha256": "f01c1a30bdbb2f853b7d91b6fd9a24b1f28d43442c909f5511784ffebf8531af"
+ },
+ {
+  "target": "backend/resources/views/emails/waitlist/offer-expired.blade.php",
+  "file": "waitlist-offer-expired.blade.php",
+  "originalSha256": "ba7d76ea555f872168f3f567e7e3eafa5462e8a8395d400f8bbd06cb84da28df"
+ },
+ {
+  "target": "backend/resources/views/emails/orders/payment-link.blade.php",
+  "file": "payment-link.blade.php",
+  "originalSha256": "79443f6572211a4a86f3ff1356d499a83fe299c81be32182eb31003677788234"
+ },
+ {
+  "target": "backend/resources/views/emails/orders/payment-success-but-order-expired.blade.php",
+  "file": "payment-success-but-order-expired.blade.php",
+  "originalSha256": "6280844d2ba76806d83b21e15088a1d2c6f5726e615e5608a37c06216c7e48d2"
+ },
+ {
+  "target": "backend/resources/views/emails/partials/lineup-highlights.blade.php",
+  "file": "lineup-highlights.blade.php",
+  "originalSha256": "576e4ad086aa76a1b9b0984c3dad06d7c23a45c6540225da86e5d9b2d1133714"
+ },
+ {
+  "target": "backend/resources/views/emails/account/deletion-requested.blade.php",
+  "file": "deletion-requested.blade.php",
+  "originalSha256": "c1b5c53ed5c54f209086dbca27deeeedef9f502a93a33cd1ff5828030bf0d006"
+ },
+ {
+  "target": "backend/resources/views/emails/account/deletion-reminder.blade.php",
+  "file": "deletion-reminder.blade.php",
+  "originalSha256": "47ac057d002474c728ca3dcaa9892dcac1e976c1cf9139207f434ff3708a5cb6"
+ },
+ {
+  "target": "backend/app/Http/Request/Account/CreateAccountRequest.php",
+  "file": "CreateAccountRequest.php",
+  "originalSha256": "651c9e44a307f09200579a84ec5f987f71e90fab4ecc01964ef2eff78d71beea"
+ },
+ {
+  "target": "backend/app/Http/Actions/Accounts/CreateAccountAction.php",
+  "file": "CreateAccountAction.php",
+  "originalSha256": "237246e771cf42a917e471689355c272f8b0580d61b1c064791427ba6e7433a2"
+ },
+ {
+  "target": "backend/app/Services/Application/Handlers/Event/UpdateEventStatusHandler.php",
+  "file": "UpdateEventStatusHandler.php",
+  "originalSha256": "8c6e15cb3e4b954b6108e2929c7603cabde3678417ec5b2b8c487c709da358b8"
+ },
+ {
+  "target": "backend/database/migrations/2026_11_21_200000_utopia_aceptaciones.php",
+  "file": "nuevos/2026_11_21_200000_utopia_aceptaciones.php",
+  "nuevo": true
+ },
+ {
+  "target": "backend/app/Validators/Rules/BaseQuestionRule.php",
+  "file": "BaseQuestionRule.php",
+  "originalSha256": "0bb0e565efe885937a8c8ee461272beee3e0da9cfa1cae4ade6b5bbe4e2b91dc"
+ }
+]

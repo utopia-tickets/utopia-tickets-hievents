@@ -1,0 +1,70 @@
+{
+ "_comentario": "Correcciones del catálogo es del frontend de Hi.Events (lingui compilado). Clave = msgid original en inglés; valor = traducción nueva. Solo textos sin marcadores de plural. Lo aplica 99-utopia-branding.sh al arrancar.",
+ "Guests": "Asistentes",
+ "Your ticket for": "Tu entrada para",
+ "Select Ticket": "Seleccionar entrada",
+ "Send order confirmation and ticket email": "Enviar por correo la confirmación del pedido y las entradas",
+ "Please wait while we prepare your invoice...": "Un momento, estamos preparando tu factura…",
+ "The link you are trying to access has expired or is no longer valid. Please check your email for an updated link to manage your order.": "Este enlace ha caducado o ya no es válido. Busca en tu correo el enlace más reciente para gestionar tu pedido.",
+ "Important: Changing your email address will update the link to access this order. You will be redirected to the new order link after saving.": "Importante: si cambias el correo, cambia también el enlace de este pedido. Al guardar te llevaremos al enlace nuevo.",
+ "Your order details have been updated. A confirmation email has been sent to the new email address.": "Hemos actualizado los datos de tu pedido y hemos enviado una confirmación a la dirección nueva.",
+ "We could not process your payment. Please try again or contact support.": "No hemos podido procesar el pago. Inténtalo de nuevo o escríbenos.",
+ "We were unable to confirm your payment. Please try again or contact support.": "No hemos podido confirmar el pago. Inténtalo de nuevo o escríbenos.",
+ "This ticket was just scanned. Please wait before scanning again.": "Esta entrada se acaba de escanear. Espera un momento antes de volver a escanearla.",
+ "We use cookies to help us understand how the site is used and to improve your experience.": "Usamos cookies para entender cómo se usa la web y mejorar tu experiencia.",
+ "Order Date": "Fecha del pedido",
+ "Order Reference": "Referencia del pedido",
+ "Order": "Pedido",
+ "Refund order": "Reembolsar pedido",
+ "Order Cancelled": "Pedido cancelado",
+ "Copy Link": "Copiar enlace",
+ "Powered by": "Powered by Utopia Tickets based on",
+ "_comentario_registro": "registro, recuperar clave y pago (de tú, sin «John/Herrero» ni «Honorarios»). Los valores con [\"0\"] son mensajes lingui con marcador: se respetan tal cual.",
+ "First name": "Nombre",
+ "First Name": "Nombre",
+ "Smith": "García",
+ "John": "Lucía",
+ "Confirm password": "Repite la contraseña",
+ "Confirm Password": "Repite la contraseña",
+ "Register": "Crear cuenta",
+ "Get started": "Crea tu cuenta",
+ "Receive product updates from {0}.": [
+  "Quiero recibir novedades de ",
+  [
+   "0"
+  ],
+  "."
+ ],
+ "Enter your email and we'll send you instructions to reset your password.": "Escribe tu correo y te mandamos un enlace para cambiar la contraseña.",
+ "Send reset link": "Enviar enlace",
+ "Fees": "Gastos de gestión",
+ "incl. fees": "gastos incl.",
+ "Secure Checkout": "Pago seguro",
+ "Your payment is protected with bank-level encryption": "Tu pago va cifrado, con la misma seguridad que en tu banco",
+ "Your Details": "Tus datos",
+ "Email address": "Correo electrónico",
+ "Email Address": "Correo electrónico",
+ "Confirm Email Address": "Repite el correo electrónico",
+ "By continuing, you agree to the <0>{0} Terms of Service</0>": [
+  "Al continuar, aceptas las <0>condiciones de compra de ",
+  [
+   "0"
+  ],
+  "</0>. Privacidad: tus datos los trata el organizador del evento para gestionar tu compra y tus entradas, y Utopia Tickets como su plataforma; puedes ejercer tus derechos ante él. Tienes toda la información en la política de privacidad, enlazada desde esas condiciones."
+ ],
+ "Subtotal": "Subtotal",
+ "Keep me updated on news and events from {0}": [
+  "Quiero recibir noticias y eventos de ",
+  [
+   "0"
+  ]
+ ],
+ "Event Date": "Fecha del evento",
+ "_comentario_pago": "primera capa de privacidad junto al pago, «Condiciones de compra» en el pie e IVA español de la comisión en los ajustes del organizador.",
+ "Terms of Service": "Condiciones de compra",
+ "As your business is based in Ireland, Irish VAT at 23% applies automatically to all platform fees.": "Como tu empresa está en España, la comisión de la plataforma lleva automáticamente el IVA español del 21 %.",
+ "VAT treatment for platform fees: EU VAT-registered businesses can use the reverse charge mechanism (0% - Article 196 of VAT Directive 2006/112/EC). Non-VAT registered businesses are charged Irish VAT at 23%.": "IVA de la comisión de la plataforma: las empresas españolas pagan el IVA del 21 %. Las de otros países de la UE con NIF-IVA válido usan la inversión del sujeto pasivo (0 %, artículo 196 de la Directiva 2006/112/CE); las que no lo tienen pagan el 21 %.",
+ "Enter your VAT number including the country code, without spaces (e.g., IE1234567A, DE123456789)": "Escribe tu NIF-IVA con el código del país y sin espacios (por ejemplo, ESB12345678 o FR12345678901)",
+ "_comentario_alta": "el pie del registro (y del acceso) ya no enlaza a las condiciones de compra; da la primera capa de privacidad del promotor. La aceptación de las condiciones para promotores va en la casilla obligatoria (overrides/js-textos.json, grupo 4).",
+ "By continuing you agree to our <0>Terms of Service</0> and <1>Privacy Policy</1>.": "Utopia Booking S.L. trata tus datos para gestionar tu cuenta y el contrato de promotor. Tienes tus derechos y toda la información en la <1>política de privacidad</1>."
+}

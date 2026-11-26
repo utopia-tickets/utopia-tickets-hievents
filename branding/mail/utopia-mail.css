@@ -1,0 +1,24 @@
+/* Utopia Tickets · correos. Se añade al final de themes/default.css; Laravel lo incrusta en línea.
+   Paleta de utopiabooking.com: tinta #000, papel #fff, turquesa #68C3B7 (acción), naranja #FF6831 (acento), gris #F2F2F2.
+   Chivo no carga en la mayoría de clientes de correo: se pide y, si no está, cae a Helvetica/Arial. */
+body, body *:not(html):not(style):not(br):not(tr):not(code) {
+    font-family: Chivo, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+body, .wrapper, .body { background-color: #F2F2F2; color: #000000; }
+.inner-body { border: 0; border-radius: 0; box-shadow: none; background-color: #FFFFFF; border-top: 6px solid #68C3B7; }
+.header { padding: 28px 0 20px; }
+.header a { color: #000000; font-weight: 900; }
+.logo { height: auto; max-height: 72px; width: 200px; max-width: 200px; }
+h1 { color: #000000; font-size: 24px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.15; }
+h2 { color: #000000; font-size: 18px; font-weight: 800; }
+h3 { color: #000000; }
+p, li { color: #1a1a1a; font-size: 16px; line-height: 1.55; }
+a { color: #1F6F66; }
+.button { border-radius: 0; box-shadow: none; font-weight: 700; font-size: 16px; padding: 4px 6px; }
+.button-primary { background-color: #68C3B7; border-bottom: 10px solid #68C3B7; border-left: 22px solid #68C3B7; border-right: 22px solid #68C3B7; border-top: 10px solid #68C3B7; color: #000000; }
+.button-success { background-color: #000000; border-bottom: 10px solid #000000; border-left: 22px solid #000000; border-right: 22px solid #000000; border-top: 10px solid #000000; color: #FFFFFF; }
+.panel { border-left: 4px solid #FF6831; }
+.panel-content { background-color: #F2F2F2; color: #000000; }
+.footer p, .footer-cell { color: #4a4a4a; font-size: 13px; }
+.footer a { color: #000000; text-decoration: underline; }
+.subcopy { border-top: 1px solid #C5C5C5; }

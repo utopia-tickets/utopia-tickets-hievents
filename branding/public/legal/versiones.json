@@ -1,0 +1,29 @@
+{
+ "generado": "25 de noviembre de 2026",
+ "documentos": {
+  "condiciones-promotores": {
+   "version": "2026-11-26",
+   "sha256": "0387c2d3267da977a03ad3cda72397b73b4f8ccee50bda91b75523ac6058d69b",
+   "url": "/utopia/legal/condiciones-promotores.html",
+   "copia": "/utopia/legal/versiones/condiciones-promotores-2026-11-26-0387c2d3267d.html"
+  },
+  "privacidad": {
+   "version": "2026-11-26",
+   "sha256": "304e2f0148eac333238adbad3effe79aafcdec2316b9c8d887fbad59ae20312b",
+   "url": "/utopia/legal/privacidad.html",
+   "copia": "/utopia/legal/versiones/privacidad-2026-11-26-304e2f0148ea.html"
+  },
+  "condiciones-de-compra": {
+   "version": "2026-11-26",
+   "sha256": "5a7d11b6d520b54831f85c70211bd8f359c7e52318c0bba537b705d834db9ad9",
+   "url": "/utopia/legal/condiciones-de-compra.html",
+   "copia": "/utopia/legal/versiones/condiciones-de-compra-2026-11-26-5a7d11b6d520.html"
+  },
+  "reventa-y-transferencia": {
+   "version": "2026-11-26",
+   "sha256": "b36445ee3a18930063139b54e7ab72dee760d7aed373d2cbda2eef32bc2e9139",
+   "url": "/utopia/legal/reventa-y-transferencia.html",
+   "copia": "/utopia/legal/versiones/reventa-y-transferencia-2026-11-26-b36445ee3a18.html"
+  }
+ }
+}

@@ -1,0 +1,77 @@
+/* Legales de Utopia Tickets. Misma paleta y letra que utopiabooking.com. */
+@font-face { font-family: "Chivo"; src: url("/utopia/fonts/chivo-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root { --ink: #000; --paper: #fff; --teal: #68C3B7; --teal-ink: #1F6F66; --orange: #FF6831; --surface: #F2F2F2; --grey: #C5C5C5; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; font: 400 17px/1.6 "Chivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: var(--paper); }
+a { color: var(--teal-ink); text-underline-offset: 2px; }
+a:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+.top { background: var(--ink); color: var(--paper); padding: 18px clamp(16px, 4vw, 48px); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.top img { height: 34px; width: auto; display: block; }
+.top a { color: var(--paper); font-weight: 700; text-decoration: none; }
+.draft { background: var(--orange); color: var(--ink); padding: 12px clamp(16px, 4vw, 48px); font-weight: 700; }
+main { max-width: 760px; margin: 0 auto; padding: clamp(28px, 5vw, 64px) clamp(16px, 4vw, 32px) 64px; }
+h1 { font-weight: 900; text-transform: uppercase; letter-spacing: -0.04em; line-height: 0.95; font-size: clamp(2.2rem, 1.2rem + 4vw, 3.6rem); margin: 0 0 16px; }
+.lead { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 8px; }
+.meta { color: #4a4a4a; font-size: 0.95rem; margin: 0 0 32px; }
+h2 { font-weight: 900; font-size: 1.4rem; letter-spacing: -0.02em; margin: 40px 0 8px; padding-top: 16px; border-top: 3px solid var(--ink); }
+h3 { font-weight: 800; font-size: 1.1rem; margin: 24px 0 4px; }
+nav.toc { background: var(--surface); padding: 16px 20px; }
+nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+@media (max-width: 560px) { nav.toc ol { columns: 1; } }
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; margin: 12px 0; }
+th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--grey); }
+th { background: var(--surface); font-weight: 800; }
+.tablewrap { overflow-x: auto; }
+.rev { background: #FFF3EC; border-left: 4px solid var(--orange); padding: 2px 8px; }
+footer { border-top: 1px solid var(--grey); padding: 24px clamp(16px, 4vw, 48px); font-size: 0.95rem; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+footer a { color: var(--ink); }
+/* tablas que caben a 390 y región desplazable con foco visible */
+body.promo .tablewrap td { white-space: nowrap; }
+.tablewrap:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+@media (max-width: 480px) { th, td { padding: 8px 6px; } }
+
+/* páginas propias: navegación, ayuda, promotores y guía */
+.skip { position: absolute; left: -9999px; top: 0; background: var(--orange); color: var(--ink); padding: 8px 12px; font-weight: 800; z-index: 10; }
+.skip:focus { left: 8px; top: 8px; }
+.top { flex-wrap: wrap; }
+.mainnav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+.mainnav a { padding: 6px 0; border-bottom: 3px solid transparent; white-space: nowrap; }
+.mainnav a[aria-current="page"] { border-bottom-color: var(--teal); }
+.top a:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+@media (max-width: 480px) { .top { padding: 14px 16px; gap: 10px; } .top img { height: 28px; } .mainnav { gap: 4px 14px; font-size: 0.95rem; } }
+.draft-soft { background: var(--surface); font-weight: 600; }
+ul.datos { list-style: none; padding: 0; margin: 12px 0; }
+ul.datos li { padding: 2px 0; }
+ul.cards { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+ul.cards li > a, ul.cards li > div { display: block; height: 100%; padding: 16px; border: 2px solid var(--ink); color: var(--ink); text-decoration: none; background: var(--paper); }
+ul.cards li > a:hover { background: var(--surface); }
+ul.cards strong { display: block; font-weight: 900; font-size: 1.05rem; margin-bottom: 4px; }
+ul.cards span { display: block; font-size: 0.95rem; color: #333; }
+.price { background: var(--teal); color: var(--ink); padding: 20px 24px; margin: 16px 0; }
+.price .big { font-weight: 900; font-size: clamp(2.6rem, 2rem + 3vw, 4rem); line-height: 1; margin: 0 0 6px; letter-spacing: -0.04em; }
+.price .big small { font-size: 0.4em; letter-spacing: 0; }
+.price p { margin: 0; font-weight: 700; }
+.hero { background: var(--ink); color: var(--paper); padding: clamp(20px, 4vw, 40px); margin: 0 0 24px; }
+.hero a { color: var(--paper); }
+.kicker { text-transform: uppercase; font-weight: 800; letter-spacing: 0.08em; font-size: 0.85rem; color: var(--teal); margin: 0 0 8px; }
+.claim { font-weight: 900; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1; font-size: clamp(1.8rem, 1.2rem + 3vw, 2.8rem); margin: 0 0 12px; }
+.claim span { color: var(--teal); }
+.ctas { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 0; }
+.btn { display: inline-block; background: var(--teal); color: var(--ink) !important; font-weight: 900; text-transform: uppercase; letter-spacing: 0.02em; padding: 14px 20px; text-decoration: none; border: 2px solid var(--teal); }
+.btn:hover { background: #8fd4cb; }
+.btn-ghost { background: transparent; color: var(--paper) !important; border-color: var(--paper); }
+.btn-ghost:hover { background: rgba(255,255,255,0.12); }
+.btn:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+ul.ticks { list-style: none; padding: 0; }
+ul.ticks li { padding: 6px 0 6px 30px; position: relative; }
+ul.ticks li::before { content: ""; position: absolute; left: 0; top: 12px; width: 16px; height: 8px; border-left: 4px solid var(--teal-ink); border-bottom: 4px solid var(--teal-ink); transform: rotate(-45deg); }
+ol.steps { counter-reset: s; list-style: none; padding: 0; }
+ol.steps li { counter-increment: s; padding: 8px 0 8px 48px; position: relative; min-height: 40px; }
+ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 4px; width: 34px; height: 34px; background: var(--ink); color: var(--paper); font-weight: 900; display: flex; align-items: center; justify-content: center; }
+.note { background: var(--surface); padding: 12px 16px; font-size: 0.95rem; }
+code { background: var(--surface); padding: 1px 5px; font-size: 0.9em; word-break: break-word; }
+footer .powered { flex-basis: 100%; color: #333; }
+footer .powered a { color: var(--teal-ink); }
+nav.toc ol { list-style: none; padding-left: 0; }
+nav.toc li { break-inside: avoid; padding: 2px 0; }

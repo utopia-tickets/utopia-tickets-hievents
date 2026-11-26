@@ -1,0 +1,280 @@
+{
+ "_comentario": "Textos fijos en el JavaScript compilado del frontend (no pasan por el catálogo lingui). patch.mjs (paso 8) los cambia SOLO si el fichero original (copia *.utopia-orig) coincide con su sha256 y cada texto aparece exactamente las veces indicadas; si no, deja el de la imagen y avisa. Al actualizar la imagen: busca el texto en inglés en frontend/dist, pon el fichero y el sha256 nuevos y comprueba las cuentas.",
+ "grupos": [
+  {
+   "nombre": "entrada de ejemplo de la pantalla de acceso (AuthShell)",
+   "ficheros": [
+    {
+     "ruta": "frontend/dist/client/assets/AuthShell-BWBszfOn.js",
+     "sha256": "ffd2594062084c5ae3b5e4148b7c6236a35fda94310e86d11810e95f9fe9801f"
+    },
+    {
+     "ruta": "frontend/dist/server/assets/AuthShell-y6jPGOi5.js",
+     "sha256": "db3555bb5699a9edd9d125154d70dc6b650c5d515cdc2c648c371544887b3ef8"
+    }
+   ],
+   "cambios": [
+    [
+     "\"Admit One\"",
+     "\"Entrada\"",
+     2
+    ],
+    [
+     "\"№ 000482\"",
+     "\"Nº 000482\"",
+     1
+    ],
+    [
+     "\"Dublin Jazz Festival\"",
+     "\"Festival Jazz Manzanares\"",
+     1
+    ],
+    [
+     "\"Sat, Aug 16 · 8:00 PM · Dublin\"",
+     "\"sáb, 16 ago · 20:00 · Madrid\"",
+     1
+    ],
+    [
+     "\"Door\"",
+     "\"Puerta\"",
+     1
+    ],
+    [
+     "\"Seat\"",
+     "\"Zona\"",
+     1
+    ],
+    [
+     "\"Price\"",
+     "\"Precio\"",
+     1
+    ],
+    [
+     "\"GA\"",
+     "\"General\"",
+     1
+    ],
+    [
+     "\"€89.00\"",
+     "\"89,00 €\"",
+     1
+    ],
+    [
+     "\"GA — €89\"",
+     "\"General · 89 €\"",
+     1
+    ],
+    [
+     "\"Sold Out\"",
+     "\"Agotado\"",
+     1
+    ]
+   ]
+  },
+  {
+   "nombre": "título por defecto de la página del organizador («<nombre> - Events»)",
+   "ficheros": [
+    {
+     "ruta": "frontend/dist/client/assets/index-CIqUOqhH.js",
+     "sha256": "7da6086b797d16a95bacfecd92e5101a97066def4d820a0cdd9b3139ba3d44b8"
+    },
+    {
+     "ruta": "frontend/dist/server/assets/index-ReUmvjC_.js",
+     "sha256": "60aacdb0d1beec827452e2d1e2d916d6dabb6e230e521626b9a1e9165217db52"
+    }
+   ],
+   "cambios": [
+    [
+     "} - Events`",
+     "} · Eventos`",
+     1
+    ]
+   ]
+  },
+  {
+   "nombre": "texto emergente del enlace a Hi.Events del pie (el aviso se queda igual, solo se traduce el title)",
+   "ficheros": [
+    {
+     "ruta": "frontend/dist/client/assets/index-D_iCEXGN.js",
+     "sha256": "4d3dc6527d65d4cc9eb15dfff91f4b3a1ac764e8847d851ce76cb529f8c4d584"
+    },
+    {
+     "ruta": "frontend/dist/server/entry.server.js",
+     "sha256": "129a26131e408a3c46e44d81e6f41100f5424bad9c28de6e48b3689d3f6813bf"
+    }
+   ],
+   "cambios": [
+    [
+     "\"Effortlessly manage events and sell tickets online with Hi.Events\"",
+     "\"Gestiona eventos y vende entradas online con Hi.Events\"",
+     2
+    ]
+   ]
+  },
+  {
+   "nombre": "botón de mostrar la contraseña (aria-label)",
+   "ficheros": [
+    {
+     "ruta": "frontend/dist/client/assets/PasswordInput-DPWhtuTU.js",
+     "sha256": "be02e4078013e9dc33dd1fbda8098955ea504a8e1950c91329759e883d613fa4"
+    },
+    {
+     "ruta": "frontend/node_modules/@mantine/core/esm/components/PasswordInput/PasswordInput.mjs",
+     "sha256": "7fe902ed3600fe3c85b9686c985edffd8950f3d8b685e3bd298b59d11511a645"
+    },
+    {
+     "ruta": "frontend/node_modules/@mantine/core/cjs/components/PasswordInput/PasswordInput.cjs",
+     "sha256": "74b87f27a8b26f2bd0d1f827576c1f5d0be33ea8464837497095b9e90de06217"
+    }
+   ],
+   "cambios": [
+    [
+     "\"Toggle password visibility\"",
+     "\"Mostrar u ocultar la contraseña\"",
+     1
+    ]
+   ]
+  },
+  {
+   "nombre": "correo de ejemplo en registro, acceso y recuperar clave · y casilla obligatoria de aceptación de las condiciones para promotores y la privacidad en el registro",
+   "ficheros": [
+    {
+     "ruta": "frontend/dist/client/assets/index-OEWHVgQw.js",
+     "sha256": "0100fe75855271fe8929228fc9581fd2fe0806a1d32ef2122bd766cc83827eac",
+     "cambios": [
+      [
+       "\"your@email.com\"",
+       "\"tucorreo@ejemplo.com\"",
+       1
+      ],
+      [
+       "marketing_opt_in:!1},validate:{password:",
+       "marketing_opt_in:!1,utopia_acepta_condiciones:!1},validate:{utopia_acepta_condiciones:U=>U===!0?null:\"Marca la casilla para aceptar las condiciones para promotores y la política de privacidad.\",password:",
+       1
+      ],
+      [
+       "e.jsx(Z,{mb:\"md\",...s.getInputProps(\"marketing_opt_in\",{type:\"checkbox\"})",
+       "e.jsx(Z,{mb:\"sm\",required:!0,...s.getInputProps(\"utopia_acepta_condiciones\",{type:\"checkbox\"}),label:e.jsxs(\"span\",{children:[\"He leído y acepto las \",e.jsx(\"a\",{href:\"/utopia/legal/condiciones-promotores.html\",target:\"_blank\",rel:\"noopener\",children:\"condiciones para promotores\"}),\" y la \",e.jsx(\"a\",{href:\"/utopia/legal/privacidad.html\",target:\"_blank\",rel:\"noopener\",children:\"política de privacidad\"}),\".\"]})}),e.jsx(Z,{mb:\"md\",...s.getInputProps(\"marketing_opt_in\",{type:\"checkbox\"})",
+       1
+      ]
+     ]
+    },
+    {
+     "ruta": "frontend/dist/server/assets/index-DUxwuxiC.js",
+     "sha256": "320e45f3c07b41c0618c5ad21ce9b1ae78fc556a40ed2611486811516639f1cb",
+     "cambios": [
+      [
+       "\"your@email.com\"",
+       "\"tucorreo@ejemplo.com\"",
+       1
+      ],
+      [
+       "marketing_opt_in: false\n    },\n    validate: {\n      password: hasLength(",
+       "marketing_opt_in: false,\n      utopia_acepta_condiciones: false\n    },\n    validate: {\n      utopia_acepta_condiciones: (v) => v === true ? null : \"Marca la casilla para aceptar las condiciones para promotores y la política de privacidad.\",\n      password: hasLength(",
+       1
+      ],
+      [
+       "              /* @__PURE__ */ jsx(Checkbox, {\n                mb: \"md\",\n                ...form.getInputProps(\"marketing_opt_in\", {",
+       "              /* @__PURE__ */ jsx(Checkbox, {\n                mb: \"sm\",\n                required: true,\n                ...form.getInputProps(\"utopia_acepta_condiciones\", { type: \"checkbox\" }),\n                label: /* @__PURE__ */ jsxs(\"span\", { children: [\"He leído y acepto las \", /* @__PURE__ */ jsx(\"a\", { href: \"/utopia/legal/condiciones-promotores.html\", target: \"_blank\", rel: \"noopener\", children: \"condiciones para promotores\" }), \" y la \", /* @__PURE__ */ jsx(\"a\", { href: \"/utopia/legal/privacidad.html\", target: \"_blank\", rel: \"noopener\", children: \"política de privacidad\" }), \".\"] })\n              }),\n              /* @__PURE__ */ jsx(Checkbox, {\n                mb: \"md\",\n                ...form.getInputProps(\"marketing_opt_in\", {",
+       1
+      ]
+     ]
+    },
+    {
+     "ruta": "frontend/dist/client/assets/index-CCjMG7Cn.js",
+     "sha256": "dd3c69c55bc1166cefc421f069bd23e8db9b4f38749ab32186cae4192a1629b2",
+     "cambios": [
+      [
+       "\"you@example.com\"",
+       "\"tucorreo@ejemplo.com\"",
+       1
+      ]
+     ]
+    },
+    {
+     "ruta": "frontend/dist/client/assets/index-2Wb8tnhs.js",
+     "sha256": "c1f061a8c8ac1fc226a573983b44574778fe60c10d578da6267138e2464c66c2",
+     "cambios": [
+      [
+       "\"you@example.com\"",
+       "\"tucorreo@ejemplo.com\"",
+       1
+      ]
+     ]
+    },
+    {
+     "ruta": "frontend/dist/server/assets/index-C2qGy0z-.js",
+     "sha256": "221ca4e24634c5add9958de23394abf64f56b6bff5863e666872ae0b8d3fc889",
+     "cambios": [
+      [
+       "\"you@example.com\"",
+       "\"tucorreo@ejemplo.com\"",
+       1
+      ]
+     ]
+    },
+    {
+     "ruta": "frontend/dist/server/assets/index-C4pHCuoO.js",
+     "sha256": "589408cd3a5c04b0b51d701b3f9dc62a04b0617eb210038f512a9af025cb1ed4",
+     "cambios": [
+      [
+       "\"you@example.com\"",
+       "\"tucorreo@ejemplo.com\"",
+       1
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "ejemplo de NIF-IVA del organizador: IE1234567A → ESB12345678",
+   "ficheros": [
+    {
+     "ruta": "frontend/dist/client/assets/index-Bq1a5zb2.js",
+     "sha256": "3b03c2c604cd16b318bcf5fe49d1f9d720da5ad2b9e92028703a342d045f6792",
+     "cambios": [
+      [
+       "placeholder:\"IE1234567A\"",
+       "placeholder:\"ESB12345678\"",
+       1
+      ]
+     ]
+    },
+    {
+     "ruta": "frontend/dist/client/assets/index-BycS5AwZ.js",
+     "sha256": "d16e2cc7c02f0f9fa792b6936264a9ee229f4e06c91383aa5942dee723830ede",
+     "cambios": [
+      [
+       "placeholder:\"IE1234567A\"",
+       "placeholder:\"ESB12345678\"",
+       1
+      ]
+     ]
+    },
+    {
+     "ruta": "frontend/dist/server/assets/index-CTNSmMpl.js",
+     "sha256": "a57ea65f412a71a526eb256a982b12127861543f104f667dbe21dff02806de4b",
+     "cambios": [
+      [
+       "placeholder: \"IE1234567A\"",
+       "placeholder: \"ESB12345678\"",
+       1
+      ]
+     ]
+    },
+    {
+     "ruta": "frontend/dist/server/assets/index-hLqYcTOJ.js",
+     "sha256": "dd492e4ce6357f4e136f7ee5dca0d0a1018dde166600b6c17f1c48003653592e",
+     "cambios": [
+      [
+       "placeholder: \"IE1234567A\"",
+       "placeholder: \"ESB12345678\"",
+       1
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "_comentario_alta": "el grupo 4 añade en el registro (cliente y SSR) la casilla obligatoria «He leído y acepto las condiciones para promotores y la política de privacidad», que se envía como utopia_acepta_condiciones; el backend (overrides/CreateAccountRequest.php) la exige."
+}

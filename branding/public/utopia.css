@@ -1,0 +1,161 @@
+/* Utopia Tickets · capa de marca sobre Hi.Events v2.2.0. Sin fork: se carga desde index.html.
+   Paleta y tipografía de utopiabooking.com (DESIGN.md): Chivo autoalojada, tinta #000, papel #fff,
+   turquesa #68C3B7 para la acción, naranja #FF6831 de acento, gris #C5C5C5 y superficie #F2F2F2.
+   Regla fija: el aviso «Desarrollado por Hi.Events» (AGPL §7b, decisión de Utopia) no se oculta,
+   ni se encoge, ni se le baja el contraste. Nada de este fichero lo toca. */
+
+@font-face {
+  font-family: "Chivo";
+  src: url("/utopia/fonts/chivo-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --utopia-orange: #FF6831;
+  --utopia-teal: #68C3B7;
+  --utopia-teal-ink: #1F6F66;      /* turquesa oscurecido para texto sobre blanco: 6,0:1 (AA) */
+  --utopia-ink: #000000;
+  --utopia-paper: #FFFFFF;
+  --utopia-grey: #C5C5C5;
+  --utopia-surface: #F2F2F2;
+  --utopia-font: "Chivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --mantine-font-family: var(--utopia-font) !important;
+  --mantine-font-family-headings: var(--utopia-font) !important;
+  --mantine-radius-default: 0px !important;
+  --mantine-radius-xs: 0px !important;
+  --mantine-radius-sm: 0px !important;
+  --mantine-radius-md: 0px !important;
+  --mantine-radius-lg: 0px !important;
+  --mantine-radius-xl: 0px !important;
+}
+
+html, body { font-family: var(--utopia-font) !important; }
+::selection { background: var(--utopia-teal); color: var(--utopia-ink); }
+
+/* La página del evento, del organizador, el widget y la entrada fijan la fuente en un style en línea. */
+[style*="--theme-font-family"],
+[style*="--widget-font-family"] {
+  --theme-font-family: var(--utopia-font) !important;
+  --widget-font-family: var(--utopia-font) !important;
+  --mantine-font-family: var(--utopia-font) !important;
+  --mantine-font-family-headings: var(--utopia-font) !important;
+  font-family: var(--utopia-font) !important;
+}
+button, input, select, textarea, .mantine-Button-root, .mantine-Text-root, .mantine-Title-root { font-family: inherit; }
+
+/* Titulares «de cartel»: Chivo 900, mayúsculas, apretados (como el display de utopiabooking.com). */
+h1[class*="_title_"],
+[class*="_eventTitle_"],
+[class*="_organizerName_"] h1 {
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: -0.035em !important;
+  line-height: 0.95 !important;
+}
+h2[class*="_sectionTitle_"], .hi-product-category-title {
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Bloques planos: sin sombras en reposo y esquinas rectas. */
+[class*="_ticketsCard_"], [class*="_locationCard_"], [class*="_hostCard_"], [class*="_sheet_"],
+[class*="_factTile_"], .hi-product-row, .hi-product-widget-container {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Botón principal de compra: turquesa con tinta, como el .btn de la web. */
+.hi-continue-button:not([data-disabled="true"]),
+.hi-continue-button:not(:disabled) {
+  background: var(--utopia-teal) !important;
+  color: var(--utopia-ink) !important;
+  --button-color: var(--utopia-ink) !important;
+}
+.hi-continue-button {
+  min-height: 52px !important;
+  border-radius: 0 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+.hi-continue-button:not(:disabled):hover { background: var(--utopia-ink) !important; color: var(--utopia-teal) !important; }
+
+/* Foco visible con la paleta (AA no textual 3:1 sobre blanco y sobre turquesa). */
+:focus-visible { outline: 3px solid var(--utopia-orange) !important; outline-offset: 2px; }
+
+/* Textos en color de acento sobre blanco: el turquesa de marca da 2,1:1 con el blanco (no pasa AA), así que los
+   enlaces de texto usan el turquesa oscurecido (6,0:1). En el widget el acento llega como --widget-secondary-color. */
+.hi-details-toggle, .hi-fee-toggle, .hi-have-a-promo-code-link,
+[class*="_poweredBy"] a { color: var(--utopia-teal-ink) !important; }
+/* Portadas con esquinas rectas, como los carteles de la web. */
+[class*="_cover"] img, img[class*="_cover"], [class*="_coverImage"], [class*="_hero"] img { border-radius: 0 !important; }
+
+/* AA medido con axe: grises y verdes de la imagen por debajo de 4,5:1. Solo se oscurecen. */
+[class*="_eyebrow_"] { color: var(--utopia-teal-ink) !important; }
+[class*="_selfServiceHint_"], [class*="_detailContent_"] [class*="_label"] { color: #595959 !important; }
+[class*="_poweredByText_"] { color: #404040 !important; }
+[class*="_value_"] a { color: var(--utopia-teal-ink) !important; }
+.mantine-Button-root[data-variant="light"], .mantine-Button-root[data-variant="subtle"],
+.mantine-Button-root[data-variant="outline"] { --button-color: var(--utopia-teal-ink) !important; color: var(--utopia-teal-ink) !important; }
+
+/* === Pantallas de acceso, registro y recuperar clave ===
+   El panel de la derecha y la entrada de ejemplo traían el verde y la letra de máquina de Hi.Events: aquí van con
+   tinta, turquesa y naranja de Utopia, Chivo y esquinas rectas. Los textos de la entrada se cambian en
+   overrides/js-textos.json. Selectores por prefijo de módulo CSS (_rightPanel_, _ticket…_), solo dentro del layout. */
+[class*="_authLayout_"] [class*="_leftPanel_"] { background: var(--utopia-paper) !important; }
+[class*="_authLayout_"] h2 { color: var(--utopia-ink) !important; font-weight: 900 !important; text-transform: uppercase; letter-spacing: -0.03em; }
+[class*="_authLayout_"] .mantine-InputWrapper-label, [class*="_authLayout_"] label { color: var(--utopia-ink) !important; }
+[class*="_authLayout_"] .mantine-Input-input, [class*="_authLayout_"] .mantine-PasswordInput-input { border-radius: 0 !important; }
+[class*="_authLayout_"] button[type="submit"].mantine-Button-root {
+  background: var(--utopia-teal) !important; color: var(--utopia-ink) !important; --button-color: var(--utopia-ink) !important;
+  border-radius: 0 !important; box-shadow: none !important; font-weight: 700 !important;
+}
+[class*="_authLayout_"] button[type="submit"].mantine-Button-root:not(:disabled):hover { background: var(--utopia-ink) !important; color: var(--utopia-teal) !important; }
+[class*="_authLayout_"] [class*="_formArea_"] a { color: var(--utopia-teal-ink) !important; }
+
+[class*="_rightPanel_"] {
+  background:
+    radial-gradient(ellipse 80% 60% at 92% -10%, color-mix(in srgb, var(--utopia-teal) 30%, transparent), transparent 62%),
+    radial-gradient(ellipse 70% 50% at -10% 110%, color-mix(in srgb, var(--utopia-orange) 22%, transparent), transparent 62%),
+    var(--utopia-ink) !important;
+}
+[class*="_rightPanel_"] [class*="_heroTitle_"] { color: var(--utopia-paper) !important; letter-spacing: -0.035em; line-height: 0.98; }
+[class*="_rightPanel_"] [class*="_heroBold_"] { font-weight: 900 !important; text-transform: uppercase; }
+[class*="_rightPanel_"] [class*="_heroLight_"] { font-weight: 400 !important; font-style: normal !important; color: var(--utopia-teal) !important; }
+[class*="_rightPanel_"] [class*="_ticketGhost_"], [class*="_rightPanel_"] [class*="_ticketInner_"] { border-radius: 0 !important; }
+[class*="_rightPanel_"] [class*="_ticketInner_"] { background: var(--utopia-paper) !important; }
+[class*="_rightPanel_"] [class*="_ticketTop_"], [class*="_rightPanel_"] [class*="_ticketField_"] span,
+[class*="_rightPanel_"] [class*="_stubLabel_"], [class*="_rightPanel_"] [class*="_stubSeat_"] {
+  font-family: var(--utopia-font) !important; font-weight: 700; letter-spacing: 0.14em !important; color: #595959 !important;
+}
+[class*="_rightPanel_"] [class*="_stubSeat_"] { letter-spacing: 0.08em !important; }
+[class*="_rightPanel_"] [class*="_ticketTitle_"] { color: var(--utopia-ink) !important; font-weight: 900 !important; text-transform: uppercase; letter-spacing: -0.02em; }
+[class*="_rightPanel_"] [class*="_ticketMeta_"] { color: #404040 !important; }
+[class*="_rightPanel_"] [class*="_ticketField_"] strong { color: var(--utopia-ink) !important; font-weight: 800 !important; }
+[class*="_rightPanel_"] [class*="_barcode_"] {
+  background: repeating-linear-gradient(90deg, var(--utopia-ink) 0 2px, transparent 2px 5px),
+              repeating-linear-gradient(90deg, var(--utopia-ink) 0 1px, transparent 1px 8px) !important;
+}
+[class*="_rightPanel_"] [class*="_stubQr_"] { fill: var(--utopia-ink) !important; }
+[class*="_rightPanel_"] [class*="_ticketMain_"] { border-left: 6px solid var(--utopia-teal); }
+[class*="_rightPanel_"] [class*="_stamp_"] {
+  color: var(--utopia-orange) !important; border-color: var(--utopia-orange) !important;
+  background: color-mix(in srgb, var(--utopia-orange) 6%, transparent) !important; border-radius: 0 !important; font-weight: 900 !important;
+}
+[class*="_rightPanel_"] [class*="_tickerTrack_"] { font-family: var(--utopia-font) !important; font-weight: 700; color: color-mix(in srgb, white 70%, transparent) !important; }
+[class*="_rightPanel_"] [class*="_tickerDot_"] { background: var(--utopia-orange) !important; border-radius: 0 !important; opacity: 1 !important; }
+/* Selector de idioma del pie de acceso: en el móvil (letra de 16 px) cortaba «Español». */
+[class*="_languageSwitcher_"] { width: auto !important; }
+[class*="_languageSwitcher_"] .mantine-Select-root, [class*="_languageSwitcher_"] .mantine-InputWrapper-root { width: 170px !important; }
+
+/* Tableta (768–991 px): el panel se estrecha y la entrada de ejemplo no cabía en una línea (título cortado con «…»). */
+@media (max-width: 991px) {
+  [class*="_rightPanel_"] [class*="_ticketTitle_"] { white-space: normal !important; font-size: 1.05rem !important; line-height: 1.05 !important; }
+  [class*="_rightPanel_"] [class*="_ticketMain_"] { padding: 1.1rem 1rem 1rem !important; }
+  [class*="_rightPanel_"] [class*="_ticketFields_"] { gap: 0.9rem !important; }
+  [class*="_rightPanel_"] [class*="_ticketField_"] strong, [class*="_rightPanel_"] [class*="_ticketMeta_"] { white-space: nowrap; font-size: 0.8rem !important; }
+  [class*="_rightPanel_"] [class*="_stamp_"] { top: 12% !important; font-size: 0.75rem !important; }
+}

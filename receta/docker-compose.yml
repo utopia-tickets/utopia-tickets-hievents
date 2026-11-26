@@ -1,0 +1,71 @@
+# Utopia Tickets: Hi.Events v2.2.0 con la capa de marca de branding/ (sin fork).
+# Pon en la misma carpeta este fichero, .env (a partir de env.template) y branding/.
+# La app escucha solo en 127.0.0.1:8080: delante va el proxy TLS o el túnel que uses para el dominio público.
+name: hievents
+services:
+  all-in-one:
+    image: daveearley/hi.events-all-in-one:v2.2.0@sha256:435728539250541d69f4161804056aeb52e5b9d99ecd44960f7a1a2fb44e3b74
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+    env_file: .env
+    environment:
+      - DB_CONNECTION=pgsql
+      - DATABASE_URL=postgresql://hievents:${POSTGRES_PASSWORD}@postgres:5432/hievents
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=
+      - REDIS_PORT=6379
+      - WEBHOOK_QUEUE_NAME=webhook-queue
+    volumes:
+      - storage:/app/backend/storage/app
+      # Capa de marca (ver branding/README.md)
+      - ./branding:/branding:ro
+      - ./branding/99-utopia-branding.sh:/etc/entrypoint.d/99-utopia-branding.sh:ro
+      - ./branding/public:/app/frontend/dist/client/utopia:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - redisdata:/data
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hievents -d hievents"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      POSTGRES_DB: hievents
+      POSTGRES_USER: hievents
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  # Recoge todos los correos para probar sin mandar nada fuera (http://127.0.0.1:8025).
+  # Con un proveedor SMTP real, quítalo y rellena las variables MAIL_* del .env.
+  mailpit:
+    image: axllent/mailpit:v1.34.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8025:8025"
+    environment:
+      MP_MAX_MESSAGES: "2000"
+      MP_SMTP_AUTH_ACCEPT_ANY: "1"
+      MP_SMTP_AUTH_ALLOW_INSECURE: "1"
+    volumes:
+      - mailpit:/data
+volumes:
+  pgdata:
+  redisdata:
+  storage:
+  mailpit:
