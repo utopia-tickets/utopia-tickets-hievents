@@ -5,7 +5,11 @@
   legal/cookies.html                legal/condiciones-de-compra.html
   legal/condiciones-promotores.html legal/reventa-y-transferencia.html
   promotores/index.html             promotores/guia.html
-  ayuda/index.html
+  ayuda/index.html                  404.html (página de error, noindex)
+  sitemap.xml (las páginas indexables, en /utopia/sitemap.xml)   robots.txt (nginx lo sirve en /robots.txt)
+
+Cada página lleva su URL canónica absoluta en SITIO (por defecto https://tickets.utopiabooking.com). Los legales van
+en «index, follow» y en el sitemap; la 404 y las copias de legal/versiones/ no.
 
 Todas comparten cabecera, pie y `legal/legal.css`. El contenido vive en `contenido.py` (mismo directorio).
 Uso:  python3 -I gen_paginas.py            → regenera en ../public
@@ -22,6 +26,7 @@ import contenido as C
 PUBLIC = HERE.parent / 'public'
 BORRADOR = os.environ.get('BORRADOR', '1') != '0'
 REPO_PUBLICO = os.environ.get('REPO_PUBLICO', '0') == '1'
+SITIO = os.environ.get('SITIO', 'https://tickets.utopiabooking.com').rstrip('/')
 REPO_URL = 'https://github.com/utopia-tickets/utopia-tickets-hievents'
 ORG_URL = C.ORG_URL
 
@@ -42,8 +47,16 @@ FOOT = [
 ]
 
 
-def page(path, title, body, desc, current=None, lead=None, meta=True, toc=None, kind='legal'):
-    robots = 'noindex, nofollow' if BORRADOR else 'index, follow'
+def url_publica(path):
+    """URL pública de una página de public/: las carpetas sin «index.html», que es como se enlazan."""
+    rel = path[:-len('index.html')] if path.endswith('index.html') else path
+    return f'{SITIO}/utopia/{rel}'
+
+
+def page(path, title, body, desc, current=None, lead=None, meta=True, toc=None, kind='legal', robots=None, canonical=True):
+    robots = robots or ('noindex, nofollow' if BORRADOR else 'index, follow')
+    canonhtml = (f'<link rel="canonical" href="{url_publica(path)}">\n'
+                 f'<meta property="og:url" content="{url_publica(path)}">\n') if canonical else ''
     nav = '\n'.join(
         f'    <a href="{h}"{" aria-current=\"page\"" if h == current else ""}>{t}</a>' for h, t in NAV)
     foot = '\n'.join(f'  <a href="{h}">{t}</a>' for h, t in FOOT)
@@ -53,7 +66,7 @@ def page(path, title, body, desc, current=None, lead=None, meta=True, toc=None, 
         foot += f'\n  <!-- AGPL §13: al hacer público el repo, regenerar con REPO_PUBLICO=1 para enlazar {REPO_URL} -->'
     draft = ('<p class="draft" role="note">BORRADOR para revisión jurídica. No está publicado ni es vinculante.</p>'
              if BORRADOR and kind == 'legal' else
-             '<p class="draft draft-soft" role="note">Versión de prueba: aún no está publicada.</p>' if BORRADOR else '')
+             '<p class="draft draft-soft" role="note">Versión de prueba: aún no está publicada.</p>' if BORRADOR and kind != 'error' else '')
     tochtml = ''
     if toc:
         tochtml = ('<nav class="toc" aria-label="Índice">\n<ol>\n' +
@@ -68,9 +81,9 @@ def page(path, title, body, desc, current=None, lead=None, meta=True, toc=None, 
 <meta name="robots" content="{robots}">
 <title>{html.escape(title)} · Utopia Tickets</title>
 <meta name="description" content="{html.escape(desc)}">
-<meta property="og:title" content="{html.escape(title)} · Utopia Tickets">
+{canonhtml}<meta property="og:title" content="{html.escape(title)} · Utopia Tickets">
 <meta property="og:description" content="{html.escape(desc)}">
-<meta property="og:image" content="/utopia/logo/utopia-tickets-positivo-1200.png">
+<meta property="og:image" content="{SITIO}/utopia/logo/utopia-tickets-positivo-1200.png">
 <link rel="icon" href="/utopia/favicon/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/utopia/legal/legal.css?v={C.VERSION}">
 </head>
@@ -136,12 +149,54 @@ def versiones():
     return docs
 
 
+# Página de error: nginx la sirve con estado 404 para lo que no existe bajo /utopia/. Sin canónica y fuera del sitemap.
+ERROR_404 = dict(
+    path='404.html', title='Página no encontrada', kind='error', meta=False, canonical=False, robots='noindex',
+    desc='Esta página de Utopia Tickets no existe o ha cambiado de sitio.',
+    lead='La página que buscas no existe o ha cambiado de sitio.',
+    body=f'''<p>Puede que el enlace esté mal escrito o que la página ya no exista. Desde aquí puedes seguir:</p>
+<ul>
+<li><a href="/">Inicio de Utopia Tickets</a></li>
+<li><a href="{ORG_URL}">Eventos a la venta</a></li>
+<li><a href="/utopia/ayuda/">Ayuda para compradores</a></li>
+<li><a href="/utopia/legal/">Información legal</a></li>
+</ul>
+<p>Si llegaste aquí desde un enlace de Utopia Tickets, avísanos en <a href="mailto:{C.MAIL}">{C.MAIL}</a>.</p>
+''')
+
+
+def sitemap(specs):
+    """/utopia/sitemap.xml: solo las páginas indexables (las de la canónica), sin la 404 ni legal/versiones/."""
+    urls = [url_publica(s['path']) for s in specs
+            if s.get('canonical', True) and not BORRADOR and not s.get('robots')]
+    filas = '\n'.join(f'  <url><loc>{html.escape(u)}</loc></url>' for u in urls)
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + (filas + '\n' if filas else '') + '</urlset>\n')
+    (PUBLIC / 'sitemap.xml').write_text(xml, encoding='utf-8')
+    return urls
+
+
+def robots_txt():
+    """robots.txt del sitio (nginx reescribe /robots.txt a /utopia/robots.txt): los dos sitemaps."""
+    txt = ('# robots.txt de Utopia Tickets (capa de marca).\n'
+           'User-agent: *\n'
+           'Allow: /\n'
+           '\n'
+           f'# Eventos y organizadores (Hi.Events)\nSitemap: {SITIO}/sitemap.xml\n'
+           f'# Páginas propias: legales, ayuda y promotores\nSitemap: {SITIO}/utopia/sitemap.xml\n')
+    (PUBLIC / 'robots.txt').write_text(txt, encoding='utf-8')
+
+
 def main():
     made = []
     for spec in C.PAGINAS:
         made.append(page(**spec))
+    made.append(page(**ERROR_404))
     for m in made:
         print('escrita', m.relative_to(PUBLIC))
+    print('sitemap', len(sitemap(C.PAGINAS + [ERROR_404])), 'URL')
+    robots_txt()
+    print('escrita robots.txt')
     for doc, v in versiones().items():
         print('versión', doc, v['version'], v['sha256'][:12])
 

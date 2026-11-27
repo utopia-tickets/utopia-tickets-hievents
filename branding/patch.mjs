@@ -3,13 +3,17 @@
 // antes de /startup.sh. Cada fichero que toca se restaura primero desde su copia prístina (*.utopia-orig), así que
 // es idempotente. Si algo no encaja (otra versión de la imagen), avisa y sigue: nunca impide que arranque la app.
 // Uso local de prueba: node patch.mjs --root <copia de /app> --branding <dir branding>
+//   --nginx <copia del nginx.conf de la imagen> y --solo '<nombre del paso>' (solo para pruebas).
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 
 const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
 const ROOT = arg('--root', '/app');
 const B = arg('--branding', '/branding');
+const NGINX = arg('--nginx', '/etc/nginx/nginx.conf');
+const SOLO = arg('--solo', null);
 const FE = path.join(ROOT, 'frontend/dist');
 const BE = path.join(ROOT, 'backend');
 const log = (...a) => console.log('[utopia-branding]', ...a);
@@ -23,6 +27,7 @@ function pristine(file) {
   return fs.readFileSync(o, 'utf-8');
 }
 function step(name, fn) {
+  if (SOLO && name !== SOLO) return;
   try { const r = fn(); results.push([name, 'OK', r || '']); log(name, 'OK', r || ''); }
   catch (e) { results.push([name, 'FALLO', String(e.message || e)]); warn(name, String(e.message || e)); }
 }
@@ -223,8 +228,21 @@ step('versiones contra la caché', () => {
 //     /assets/ (con huella) y de una hora en /utopia/, y el panel fuera de marcos ajenos. Solo si el nginx.conf de la
 //     imagen coincide con su sha256; si no, se deja el de la imagen y se avisa. nginx arranca después (supervisord),
 //     así que lee la versión nueva. Los fragmentos viven en /branding/nginx/.
+//     Si existe nginx/idioma.conf (un map de nivel http), se incluye en http {} y «location /» manda al
+//     SSR $utopia_accept_language: «es» cuando la petición no trae idioma (los rastreadores) y el suyo cuando lo trae.
+//     Antes se pasa «nginx -t» con esa versión; si falla, se escribe la de siempre y se avisa. Sin idioma.conf, el
+//     nginx.conf sale byte a byte igual que antes.
+function nginxValida(conf) {
+  const tmp = NGINX + '.utopia-candidata';
+  fs.writeFileSync(tmp, conf);
+  // stdout y stderr heredados: nginx.conf abre /dev/stdout y /dev/stderr para sus logs, y con un pipe de Node (un
+  // socket) nginx -t falla con ENXIO. Así el detalle del error, si lo hay, queda en el log del contenedor.
+  try { execFileSync('nginx', ['-t', '-q', '-c', tmp], { stdio: ['ignore', 'inherit', 'inherit'] }); return true; }
+  catch (e) { return String(e.status != null ? `salida ${e.status}` : (e.code || e.message || e)); }
+  finally { fs.rmSync(tmp, { force: true }); }
+}
 step('nginx (cabeceras y caché)', () => {
-  const f = '/etc/nginx/nginx.conf';
+  const f = NGINX;
   const ESPERADO = '7ed3bfa6ca1880b3962332f4b49cd521fc96fce7e92f9c7d16df7fa85705cbca';
   if (!fs.existsSync(f)) throw new Error('no existe ' + f);
   if (!fs.existsSync(path.join(B, 'nginx/cabeceras.conf'))) throw new Error('faltan los fragmentos de /branding/nginx');
@@ -237,8 +255,17 @@ step('nginx (cabeceras y caché)', () => {
   let n = orig.replace('http {', 'http {\n   server_tokens off;');
   n = n.replace(xss, '       include /branding/nginx/cabeceras.conf;\n       include /branding/nginx/ubicaciones.conf;');
   n = n.replace(loc, loc + '\n           proxy_hide_header X-Powered-By;');
+  let idioma = '';
+  if (fs.existsSync(path.join(B, 'nginx/idioma.conf'))) {
+    const c = n.replace('   server_tokens off;', '   server_tokens off;\n   include /branding/nginx/idioma.conf;')
+      .replace(loc + '\n           proxy_hide_header X-Powered-By;',
+        loc + '\n           proxy_hide_header X-Powered-By;\n           proxy_set_header Accept-Language $utopia_accept_language;');
+    const ok = nginxValida(c);
+    if (ok === true) { n = c; idioma = ', SSR en español sin Accept-Language'; }
+    else warn('nginx (idioma): nginx -t falla con idioma.conf, se deja sin ella:', ok);
+  }
   fs.writeFileSync(f, n);
-  return 'server_tokens off, 4 cabeceras, caché de /assets y /utopia, panel con X-Frame-Options';
+  return 'server_tokens off, 4 cabeceras, caché de /assets y /utopia, panel con X-Frame-Options' + idioma;
 });
 
 const bad = results.filter(r => r[1] !== 'OK').length;

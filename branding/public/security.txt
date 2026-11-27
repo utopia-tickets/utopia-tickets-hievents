@@ -1,0 +1,6 @@
+# security.txt de Utopia Tickets (RFC 9116). Para avisar de un fallo de seguridad en la tiquetera.
+# To report a security issue on this website.
+Contact: mailto:tickets@utopiabooking.com
+Expires: 2027-10-31T23:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://tickets.utopiabooking.com/.well-known/security.txt

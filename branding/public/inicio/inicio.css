@@ -1,0 +1,47 @@
+/* Portada pública de Utopia Tickets («/»). Va encima de /utopia/legal/legal.css (paleta, letra, cabecera y pie). */
+body.inicio main { max-width: 1120px; }
+.top .acceso { font-weight: 600; font-size: 0.9rem; opacity: 0.85; border: 1px solid rgba(255,255,255,0.45); padding: 6px 12px; white-space: nowrap; }
+.top .acceso:hover { opacity: 1; background: rgba(255,255,255,0.08); }
+.top .derecha { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
+
+.portada-hero { background: var(--ink); color: var(--paper); padding: clamp(24px, 5vw, 56px); margin: 0 0 32px; }
+.portada-hero h1 { color: var(--paper); margin: 0 0 12px; max-width: 16ch; }
+.portada-hero h1 span { color: var(--teal); }
+.portada-hero p { max-width: 58ch; margin: 0; font-size: 1.05rem; }
+.portada-hero .ctas a.btn-ghost { color: var(--paper) !important; }
+
+.seccion-cab { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; border-top: 3px solid var(--ink); padding-top: 16px; margin: 8px 0 16px; }
+.seccion-cab h2 { border: 0; padding: 0; margin: 0; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem); text-transform: uppercase; letter-spacing: -0.03em; }
+.seccion-cab a { font-weight: 700; }
+
+ul.eventos { list-style: none; padding: 0; margin: 0 0 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+ul.eventos li { display: flex; }
+.ev { display: flex; flex-direction: column; width: 100%; border: 2px solid var(--ink); background: var(--paper); color: var(--ink); text-decoration: none; }
+.ev:hover { background: var(--surface); }
+.ev:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.ev .img { aspect-ratio: 16 / 9; background: var(--surface) center / cover no-repeat; border-bottom: 2px solid var(--ink); }
+.ev .txt { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.ev .fecha { text-transform: uppercase; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.04em; color: var(--teal-ink); }
+.ev .titulo { font-weight: 900; font-size: 1.15rem; line-height: 1.2; letter-spacing: -0.01em; }
+.ev .lugar { font-size: 0.95rem; color: #333; }
+.ev .pie { margin-top: auto; padding-top: 8px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.ev .cta { background: var(--teal); font-weight: 900; text-transform: uppercase; font-size: 0.9rem; padding: 8px 12px; }
+.ev .estado { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; padding: 4px 8px; background: var(--ink); color: var(--paper); }
+.ev .estado.agotado { background: var(--orange); color: var(--ink); }
+
+.vacio, .cargando { background: var(--surface); padding: clamp(20px, 4vw, 32px); margin: 0 0 16px; }
+.vacio strong { display: block; font-weight: 900; font-size: 1.2rem; margin-bottom: 6px; }
+.vacio p, .cargando p { margin: 0; }
+
+.organizas { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: center; background: var(--teal); color: var(--ink); padding: clamp(24px, 4vw, 40px); margin: 40px 0 16px; }
+.organizas h2 { border: 0; padding: 0; margin: 0 0 8px; font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.2rem); text-transform: uppercase; letter-spacing: -0.03em; }
+.organizas p { margin: 0 0 8px; }
+.organizas .precio { font-weight: 900; font-size: clamp(2rem, 1.6rem + 2vw, 3rem); line-height: 1; letter-spacing: -0.04em; margin: 0 0 4px; }
+.organizas .precio small { font-size: 0.4em; letter-spacing: 0; }
+.organizas .btn { background: var(--ink); color: var(--paper) !important; border-color: var(--ink); }
+.organizas .btn:hover { background: #222; }
+.organizas a:not(.btn) { color: var(--ink); font-weight: 700; }
+@media (max-width: 720px) { .organizas { grid-template-columns: 1fr; } }
+
+.ayuda-linea { font-size: 0.95rem; margin: 8px 0 0; }
+@media (max-width: 480px) { .top .acceso { padding: 5px 10px; } ul.eventos { gap: 14px; } }

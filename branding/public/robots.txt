@@ -1,0 +1,8 @@
+# robots.txt de Utopia Tickets (capa de marca).
+User-agent: *
+Allow: /
+
+# Eventos y organizadores (Hi.Events)
+Sitemap: https://tickets.utopiabooking.com/sitemap.xml
+# Páginas propias: legales, ayuda y promotores
+Sitemap: https://tickets.utopiabooking.com/utopia/sitemap.xml

@@ -159,3 +159,26 @@ h2[class*="_sectionTitle_"], .hi-product-category-title {
   [class*="_rightPanel_"] [class*="_ticketField_"] strong, [class*="_rightPanel_"] [class*="_ticketMeta_"] { white-space: nowrap; font-size: 0.8rem !important; }
   [class*="_rightPanel_"] [class*="_stamp_"] { top: 12% !important; font-size: 0.75rem !important; }
 }
+
+/* === Pie legal del acceso, el alta y el pago ===
+   Enlaces que añade overrides/js-textos.json (aviso legal, privacidad, cookies, ayuda y contacto…), en el orden del
+   pie de /utopia/*. En la página del organizador y del evento usan las clases del pie de Hi.Events. */
+.utopia-pie-legal {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 2px 16px; margin: 16px auto 0; padding: 0; max-width: 100%;
+  font-size: 13px; line-height: 1.35; text-align: center;
+}
+.utopia-pie-legal a {
+  display: inline-flex; align-items: center; min-height: 24px;
+  color: var(--utopia-teal-ink) !important; text-decoration: none;
+}
+.utopia-pie-legal a:hover { text-decoration: underline; }
+[class*="_panelFooter_"] .utopia-pie-legal { margin: 0; }
+/* AA del pago medido con axe: el enlace del aviso de condiciones, la cuenta atrás y el método de pago elegido venían
+   en turquesa claro sobre claro (1,85–2,27:1), la etiqueta «método de pago» en gris (3,15:1) y el rojo de error de
+   Mantine da 3,28:1 sobre blanco. Solo se oscurecen; el enlace del aviso va subrayado para distinguirlo del texto. */
+[class*="_tosNotice_"] a { color: var(--utopia-teal-ink) !important; text-decoration: underline !important; }
+[class*="_paymentMethodLabel_"] { color: #595959 !important; }
+[class*="_paymentMethodTab_"][class*="_active_"], [class*="_paymentMethodTab_"][class*="_active_"] > span { color: var(--utopia-teal-ink) !important; }
+[class*="_countdown_"] { color: var(--utopia-teal-ink) !important; }
+:root { --mantine-color-error: #C92A2A !important; }
